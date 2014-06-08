@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/cream" >
+
+    <ImageView
+        android:padding="5dp"
+        android:background="@color/blue_light"
+        android:text="@string/app_name"
+        android:src="@drawable/ic_launcher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="center" />
+
+
+    <TextView
+        android:padding="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/et_info_weather"
+        android:id="@+id/tv_info_weather" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+
+        android:hint="@string/et_hint_weather" />
+
+
+</LinearLayout>

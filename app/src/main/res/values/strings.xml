@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AlarmCast</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="dlg_title_widgets">"Pick a Widget</string>
+
+    <!--Widget setting dialog hints -->
+    <string name="et_hint_youtube">"Youtube URL"</string>
+    <string name="et_hint_map_start">"Start Location"</string>
+    <string name="et_hint_map_end">"End Location"</string>
+    <string name="et_hint_weather">"Weather Location"</string>
+
+    <string name="et_info_weather">"Enter a location or use current."</string>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="widgets">
+
+        <item>Calendar</item>
+        <item>Traffic Layer</item>
+        <item>Youtube</item>
+        <item>Weather</item>
+
+    </string-array>
+</resources>
