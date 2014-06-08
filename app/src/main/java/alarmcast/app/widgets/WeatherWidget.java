@@ -42,8 +42,10 @@ public class WeatherWidget extends Widget {
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);
 
-        parcel.writeDouble(location.latitude);
-        parcel.writeDouble(location.longitude);
+        if(location != null) {
+            parcel.writeDouble(location.latitude);
+            parcel.writeDouble(location.longitude);
+        }
     }
     @Override
     public int describeContents() {

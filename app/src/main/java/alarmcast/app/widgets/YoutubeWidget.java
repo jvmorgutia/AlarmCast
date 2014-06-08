@@ -40,6 +40,7 @@ public class YoutubeWidget extends Widget {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);
+
         parcel.writeString(ytURL);
 
     }

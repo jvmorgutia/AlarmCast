@@ -46,11 +46,14 @@ public class MapWidget extends Widget {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);
-        parcel.writeDouble(start.latitude);
-        parcel.writeDouble(start.longitude);
-
-        parcel.writeDouble(end.latitude);
-        parcel.writeDouble(end.longitude);
+        if(start != null) {
+            parcel.writeDouble(start.latitude);
+            parcel.writeDouble(start.longitude);
+        }
+        if(end != null) {
+            parcel.writeDouble(end.latitude);
+            parcel.writeDouble(end.longitude);
+        }
     }
     @Override
     public int describeContents() {

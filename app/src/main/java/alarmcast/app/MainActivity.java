@@ -1,5 +1,7 @@
 package alarmcast.app;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -11,14 +13,20 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 
 import alarmcast.app.widgets.EmptyWidget;
+import alarmcast.app.widgets.JsonAdapterWidget;
 import alarmcast.app.widgets.Widget;
 
 
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener, DlgWidgetPicker.OnDialogComplete, AdapterWidget.OnSettingClick {
     private static final String SAVE_WIDGETS = "widgets";
+    private static final String SAVE_JSON_WIDGETS = "json_widgets";
 
     private ArrayList<Widget> widgets;
     private AdapterWidget adapterWidget;
@@ -39,9 +47,22 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         gridview.setOnItemClickListener(this);
 
         if(savedInstanceState == null || !savedInstanceState.containsKey(SAVE_WIDGETS)) {
-            widgets = new ArrayList<Widget>();
-            for (int i = 0; i < 4; i++)
-                widgets.add(new EmptyWidget());
+
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            String jsonString = sharedPref.getString(SAVE_JSON_WIDGETS,null);
+
+            GsonBuilder gsonBilder = new GsonBuilder();
+            gsonBilder.registerTypeAdapter(Widget.class, new JsonAdapterWidget());
+            Gson gson = gsonBilder.create();
+
+            widgets = gson.fromJson(jsonString,new TypeToken<ArrayList<Widget>>(){}.getType());
+
+            if(widgets == null) {
+                widgets = new ArrayList<Widget>();
+
+                for (int i = 0; i < 4; i++)
+                    widgets.add(new EmptyWidget());
+            }
         }
         else {
             widgets = savedInstanceState.getParcelableArrayList(SAVE_WIDGETS);
@@ -77,7 +98,18 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         widgets.set(ndx,selectedWidget);
         adapterWidget.notifyDataSetChanged();
     }
+    @Override
+    public void onPause() {
+        super.onPause();
 
+        GsonBuilder gsonBilder = new GsonBuilder();
+        gsonBilder.registerTypeAdapter(Widget.class, new JsonAdapterWidget());
+        Gson gson = gsonBilder.create();
+        String jsonString = gson.toJson(widgets, new TypeToken<ArrayList<Widget>>(){}.getType());
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        sharedPref.edit().putString(SAVE_JSON_WIDGETS, jsonString).commit();
+    }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
