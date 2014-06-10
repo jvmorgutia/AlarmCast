@@ -47,17 +47,36 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
         }
 
         int height = parent.getHeight();
-        if(parent.getId() == R.id.gv_four_widget_picker) {
-            if (height > 0) {
-                ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-                layoutParams.height = height / 2 - 30;
-            }
-        }
-        else if(parent.getId() == R.id.gv_two_widget_picker) {
-            if (height > 0) {
-                ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-                layoutParams.height = height - 30;
-            }
+        int width = parent.getWidth();
+        switch(parent.getId()) {
+
+            case R.id.gv_four_widget_picker:
+                if (height > 0) {
+                    ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+                    layoutParams.height = (height-60) / 2 ;
+                }
+                break;
+
+            case R.id.gv_three_widget_picker:
+                if (height > 0) {
+                    ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+                    if (position == 0)
+                        layoutParams.width = width;
+
+                    //Hide view item at position 1 behind view item at position 3
+                    else if(position == 1)
+                        v.setY((height + 60) / 2);
+
+                    layoutParams.height = (height-60) / 2 ;
+                }
+                break;
+
+            case R.id.gv_two_widget_picker:
+                if (height > 0) {
+                    ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+                    layoutParams.height = height - 60;
+                }
+                break;
         }
 
         final Widget curWidget = widgets.get(position);
@@ -80,9 +99,7 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
                 }
             });
         }
+
         return v;
-
     }
-
-
 }

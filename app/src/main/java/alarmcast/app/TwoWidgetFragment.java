@@ -1,6 +1,7 @@
 package alarmcast.app;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-public class TwoWidgetFragment extends WidgetFragment implements AdapterView.OnItemClickListener {
+public class TwoWidgetFragment extends WidgetFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -23,13 +24,20 @@ public class TwoWidgetFragment extends WidgetFragment implements AdapterView.OnI
         });
 
         gridview.setOnItemClickListener(this);
-        gridview.setAdapter(((MainTabActivity)getActivity()).adapterWidget);
+        if(widgets == null)
+            widgets = loadWidgets(SAVE_TWO_WIDGETS);
+
+        adapterWidget = new AdapterWidget(getActivity(), R.layout.gv_item_widget, widgets);
+
+        gridview.setAdapter(adapterWidget);
 
         return v;
     }
 
     @Override
-    public void onItemClick(final AdapterView<?> adapterView, View view, int position, long id) {
-        DlgWidgetPicker.newInstance(position).show(getActivity().getSupportFragmentManager(),null);
+    public void onPause() {
+        super.onPause();
+
+        saveWidgets(SAVE_TWO_WIDGETS);
     }
 }

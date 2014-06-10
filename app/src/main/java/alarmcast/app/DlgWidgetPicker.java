@@ -25,23 +25,12 @@ public class DlgWidgetPicker extends DialogFragment implements DialogInterface.O
         public abstract void onDialogComplete(int ndx,Widget selectedWidget);
     }
 
-    public static DlgWidgetPicker newInstance(int ndx) {
+    public static DlgWidgetPicker newInstance(int ndx, OnDialogComplete mListener) {
         DlgWidgetPicker dwp = new DlgWidgetPicker();
         dwp.ndx = ndx;
+        dwp.mListener = mListener;
         return dwp;
     }
-
-    @Override
-    public void onAttach(Activity activity) {
-        try {
-            this.mListener = (OnDialogComplete)activity;
-            super.onAttach(activity);
-        }
-        catch (final ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnDialogComplete");
-        }
-    }
-
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
