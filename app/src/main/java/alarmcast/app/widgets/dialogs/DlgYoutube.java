@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.widget.EditText;
 
 import alarmcast.app.R;
-import alarmcast.app.widgets.Widget;
 import alarmcast.app.widgets.YoutubeWidget;
 
 /**
@@ -36,7 +35,7 @@ public class DlgYoutube extends DialogFragment {
         // Pass null as the parent view because its going in the dialog layout
         builder.setView(inflater.inflate(R.layout.dlg_youtube_setting, null))
                 // Add action buttons
-                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getActivity().getString(R.string.dlg_accept), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         final Dialog d = (Dialog)dialog;
@@ -46,7 +45,7 @@ public class DlgYoutube extends DialogFragment {
 
                     }
                 })
-                .setNegativeButton("Cancel", null);
+                .setNegativeButton(getActivity().getString(R.string.dlg_cancel), null);
 
         Dialog d = builder.create();
         d.setCanceledOnTouchOutside(true);

@@ -14,4 +14,15 @@
 
     <string name="et_info_weather">"Enter a location or use current."</string>
 
+    <!-- Tab Names -->
+    <string name="tab_one">Four Widgets</string>
+    <string name="tab_two">Two Widgets</string>
+
+    <!-- Dialog Buttons -->
+    <string name="dlg_accept">Accept</string>
+    <string name="dlg_cancel">Cancel</string>
+    <string name="dlg_use_current">User Current</string>
+
+
+
 </resources>

@@ -12,7 +12,6 @@ import android.widget.EditText;
 
 import alarmcast.app.R;
 import alarmcast.app.widgets.WeatherWidget;
-import alarmcast.app.widgets.Widget;
 
 /**
  * Created by charles on 6/7/14.
@@ -34,7 +33,7 @@ public class DlgWeather extends DialogFragment{
 
         builder.setView(inflater.inflate(R.layout.dlg_weather_setting, null))
 
-                .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getActivity().getString(R.string.dlg_accept), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Dialog d = (Dialog) dialog;
@@ -44,13 +43,13 @@ public class DlgWeather extends DialogFragment{
                             curWidget.setLocation(location.toString(), getActivity());
                     }
                 })
-                .setNeutralButton("Use Current", new DialogInterface.OnClickListener() {
+                .setNeutralButton(getActivity().getString(R.string.dlg_use_current), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 })
-                .setNegativeButton("Cancel", null);
+                .setNegativeButton(getActivity().getString(R.string.dlg_cancel), null);
 
         Dialog d = builder.create();
         d.setCanceledOnTouchOutside(true);

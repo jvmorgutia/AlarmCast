@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import alarmcast.app.widgets.MapWidget;
 import alarmcast.app.widgets.Widget;
 
 /**
@@ -35,11 +34,9 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
 
         }
         catch (final ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnCompleteListener");
+            throw new ClassCastException(context.toString() + " must implement OnSettingClick");
         }
     }
-
-
 
     public View getView(final int position, View convertView, ViewGroup parent){
         View v = convertView;
@@ -50,9 +47,17 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
         }
 
         int height = parent.getHeight();
-        if (height > 0) {
-            ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-            layoutParams.height = height / 2 - 30;
+        if(parent.getId() == R.id.gv_four_widget_picker) {
+            if (height > 0) {
+                ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+                layoutParams.height = height / 2 - 30;
+            }
+        }
+        else if(parent.getId() == R.id.gv_two_widget_picker) {
+            if (height > 0) {
+                ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
+                layoutParams.height = height - 30;
+            }
         }
 
         final Widget curWidget = widgets.get(position);

@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
 
 import alarmcast.app.widgets.CalendarWidget;
 import alarmcast.app.widgets.MapWidget;
@@ -39,7 +38,7 @@ public class DlgWidgetPicker extends DialogFragment implements DialogInterface.O
             super.onAttach(activity);
         }
         catch (final ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnCompleteListener");
+            throw new ClassCastException(activity.toString() + " must implement OnDialogComplete");
         }
     }
 

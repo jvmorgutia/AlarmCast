@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gv_widget_picker"
+    android:id="@+id/gv_two_widget_picker"
     android:background="@color/bg_gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:stretchMode="columnWidth"
     android:verticalSpacing="15dp"
     android:horizontalSpacing="15dp"
@@ -12,4 +13,3 @@
     android:focusable="true"
     android:numColumns="2"
     android:layout_gravity="center"/>
-
