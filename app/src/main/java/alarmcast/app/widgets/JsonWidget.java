@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 /**
  * Created by charles on 6/8/14.
  */
-public class JsonAdapterWidget implements JsonSerializer<Widget>, JsonDeserializer<Widget> {
+public class JsonWidget implements JsonSerializer<Widget>, JsonDeserializer<Widget> {
     @Override
     public JsonElement serialize(Widget src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();

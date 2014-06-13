@@ -6,6 +6,10 @@
     <string name="action_settings">Settings</string>
     <string name="dlg_title_widgets">"Pick a Widget</string>
 
+    <!-- chromecast receiver appid -->
+    <string name="app_id">BFD56799</string>
+    <string name="namespace">urn:x-cast:alarmcast.app</string>
+
     <!--Widget setting dialog hints -->
     <string name="et_hint_youtube">"Youtube URL"</string>
     <string name="et_hint_map_start">"Start Location"</string>

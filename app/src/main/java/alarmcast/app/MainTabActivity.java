@@ -1,7 +1,5 @@
 package alarmcast.app;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,18 +9,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import alarmcast.app.widgets.EmptyWidget;
-import alarmcast.app.widgets.JsonAdapterWidget;
 import alarmcast.app.widgets.Widget;
 
 /**
@@ -38,8 +26,6 @@ public class MainTabActivity extends ActionBarActivity implements ActionBar.TabL
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_main);
-
-
 
         MainTabAdapter mAppSectionsPagerAdapter = new MainTabAdapter(getSupportFragmentManager());
 
