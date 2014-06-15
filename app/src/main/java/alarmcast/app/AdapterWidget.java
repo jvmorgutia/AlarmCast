@@ -48,33 +48,34 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
 
         int height = parent.getHeight();
         int width = parent.getWidth();
+
         switch(parent.getId()) {
 
             case R.id.gv_four_widget_picker:
                 if (height > 0) {
                     ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-                    layoutParams.height = (height-60) / 2 ;
+                    layoutParams.height = height  / 2 - 8;
                 }
                 break;
 
             case R.id.gv_three_widget_picker:
                 if (height > 0) {
                     ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-                    if (position == 0)
+
+                    if(position == 0)
                         layoutParams.width = width;
 
-                    //Hide view item at position 1 behind view item at position 3
                     else if(position == 1)
-                        v.setY((height + 60) / 2);
+                        v.setY(-9000);
 
-                    layoutParams.height = (height-60) / 2 ;
+                    layoutParams.height = height / 2 - 8;
                 }
                 break;
 
             case R.id.gv_two_widget_picker:
                 if (height > 0) {
                     ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-                    layoutParams.height = height - 60;
+                    layoutParams.height = height;
                 }
                 break;
         }
@@ -84,7 +85,7 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
             TextView tv = (TextView) v.findViewById(R.id.tv_widget_title);
             tv.setText(curWidget.getTitle());
 
-            //TODO: Create imageView for default widget
+            //TODO: Create imageView for empty widget
             if(curWidget.getImage() != -1) {
                 ImageView iv = (ImageView) v.findViewById(R.id.iv_widget);
                 iv.setImageResource(curWidget.getImage());

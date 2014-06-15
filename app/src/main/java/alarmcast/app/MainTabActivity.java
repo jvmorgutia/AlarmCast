@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
 import android.widget.Toast;
 
 import alarmcast.app.widgets.Widget;
@@ -61,6 +62,12 @@ public class MainTabActivity extends ActionBarActivity implements ActionBar.TabL
             Toast.makeText(this, getString(R.string.toast_no_setting),
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
 
