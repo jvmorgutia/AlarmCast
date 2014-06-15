@@ -1,13 +1,11 @@
 package alarmcast.app;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,18 +14,14 @@ import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 
 import alarmcast.app.widgets.EmptyWidget;
-import alarmcast.app.widgets.JsonAdapterWidget;
+import alarmcast.app.widgets.JsonWidget;
 import alarmcast.app.widgets.Widget;
 
 /**
  * Created by charles on 6/9/14.
  */
-public class WidgetFragment extends Fragment implements DlgWidgetPicker.OnDialogComplete,AdapterView.OnItemClickListener {
-    protected static final String SAVE_FOUR_WIDGETS = "four_widgets";
-    protected static final String SAVE_THREE_WIDGETS = "three_widgets";
-    protected static final String SAVE_TWO_WIDGETS = "two_widgets";
-
-    protected static final String SAVE_TEMP_WIDGETS = "widgets";
+public abstract class WidgetFragment extends Fragment implements DlgWidgetPicker.OnDialogComplete,AdapterView.OnItemClickListener {
+    private static final String SAVE_TEMP_WIDGETS = "widgets";
 
     protected AdapterWidget adapterWidget;
     protected ArrayList<Widget> widgets;
@@ -52,12 +46,9 @@ public class WidgetFragment extends Fragment implements DlgWidgetPicker.OnDialog
             widgets = savedInstanceState.getParcelableArrayList(SAVE_TEMP_WIDGETS);
     }
 
-
-
-
     public ArrayList<Widget> loadWidgets(String saveLoc) {
         GsonBuilder gsonBilder = new GsonBuilder();
-        gsonBilder.registerTypeAdapter(Widget.class, new JsonAdapterWidget());
+        gsonBilder.registerTypeAdapter(Widget.class, new JsonWidget());
         Gson gson = gsonBilder.create();
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
@@ -76,7 +67,7 @@ public class WidgetFragment extends Fragment implements DlgWidgetPicker.OnDialog
     }
     public void saveWidgets(String saveLoc) {
         GsonBuilder gsonBilder = new GsonBuilder();
-        gsonBilder.registerTypeAdapter(Widget.class, new JsonAdapterWidget());
+        gsonBilder.registerTypeAdapter(Widget.class, new JsonWidget());
         Gson gson = gsonBilder.create();
         String jsonString = gson.toJson(widgets, new TypeToken<ArrayList<Widget>>(){}.getType());
 

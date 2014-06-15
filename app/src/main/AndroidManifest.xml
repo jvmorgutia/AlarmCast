@@ -6,7 +6,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Example">
+        android:theme="@style/Theme.Apptheme">
 
         <activity
             android:name=".MainTabActivity"
@@ -19,6 +19,29 @@
             </intent-filter>
 
         </activity>
+
+        <receiver android:name="receiver.AlarmReceiver">
+            <intent-filter>
+
+                <!--intents for stock nexus alarm-->
+                <action android:name="com.android.deskclock.ALARM_ALERT"/>
+
+                <!--<action android:name="com.android.deskclock.ALARM_DONE"/>
+                <action android:name="com.android.deskclock.ALARM_SNOOZE"/>
+                <action android:name="com.android.deskclock.ALARM_DISMISS"/>-->
+
+                <!--intent for Samsung -->
+                <action android:name="com.samsung.sec.android.clockpackage.alarm.ALARM_ALERT"/>
+
+                <!-- intent for Sony -->
+                <action android:name="com.sonyericsson.alarm.ALARM_DONE"/>
+
+                <!-- intent for HTC One -->
+                <action android:name="com.htc.android.worldclock.ALARM_ALERT"/>
+
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

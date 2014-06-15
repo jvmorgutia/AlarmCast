@@ -6,7 +6,7 @@
     android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
-        android:background="@color/blue_light"
+        android:background="@color/red_light"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -26,6 +26,7 @@
             android:paddingLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:text="hi"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="center_vertical"
@@ -35,7 +36,7 @@
 
     <ImageView
         android:padding="5dp"
-        android:background="@color/cream"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

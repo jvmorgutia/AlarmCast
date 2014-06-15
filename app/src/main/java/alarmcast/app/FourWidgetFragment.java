@@ -1,19 +1,19 @@
 package alarmcast.app;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 
 public class FourWidgetFragment extends WidgetFragment {
+    private static final String SAVE_FOUR_WIDGETS = "four_widgets";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_four_widget, container, false);
 
         GridView gridview = (GridView) v.findViewById(R.id.gv_four_widget_picker);
