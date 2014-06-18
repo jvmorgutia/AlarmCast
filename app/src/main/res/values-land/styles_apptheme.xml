@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Apptheme" parent="@style/Theme.Apptheme.Base"></style>
+    <style name="ActionBarTabStyle.Apptheme" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_apptheme_land</item>
+    </style>
+</resources>

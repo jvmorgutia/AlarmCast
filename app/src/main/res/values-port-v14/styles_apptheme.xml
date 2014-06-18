@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Apptheme" parent="@style/Theme.Apptheme.Base.v14">
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+
+    </style>
+
+    <style name="MyActionBarTabText"
+        parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@color/black</item>
+        <!-- The textColor property is backward compatible with the Support Library -->
+    </style>
+
+</resources>

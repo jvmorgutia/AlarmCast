@@ -1,0 +1,75 @@
+[33mcommit d86573172af9dca688c00c5adffb6fa01edafdfb[m
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Wed Jun 18 14:11:33 2014 -0700
+
+    Recolor again
+
+[33mcommit 42ab2c55ebc6ada7f874a18f7ab7161f69703942[m
+Merge: cc8a50b 1568569
+Author: Charles Durham <ctdurham@csupomona.edu>
+Date:   Sat Jun 14 20:48:21 2014 -0700
+
+    Merge pull request #1 from charlesdurham/development
+    
+    Development
+
+[33mcommit 156856975027ef9aa4da126dc0b309a91f1c56ed[m
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Sat Jun 14 20:47:17 2014 -0700
+
+    Recolor and slight UI adjustments
+
+[33mcommit 537b6a82d173fb3a9bd0f1c546ee0f6f911a8146[m
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Fri Jun 13 15:32:22 2014 -0700
+
+    Push before disk format
+
+[33mcommit cc8a50bedd168bbfaffe3a4311b19ef43a43d2b2[m
+Merge: 4a5aa15 9b09d8c
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Tue Jun 10 00:50:05 2014 -0700
+
+    Merge branch 'master' of https://github.com/charlesdurham/AlarmCast
+
+[33mcommit 4a5aa15288d43b30b00b313a1860ab383c431925[m
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Tue Jun 10 00:46:57 2014 -0700
+
+    Fixed Persistance and added ActionBar colors
+
+[33mcommit 9b09d8c6bb58269d7c81f63ce04f8b329e326c4a[m
+Author: Charles Durham <ctdurham@csupomona.edu>
+Date:   Mon Jun 9 17:43:56 2014 -0700
+
+    Delete .gitignore
+
+[33mcommit d440e8958abee73d0d2c6c979966905ba4436c49[m
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Mon Jun 9 17:42:59 2014 -0700
+
+    Swipe tabs and second layout
+
+[33mcommit 4e93776471f3ee812ddb46098f124f756dcbac0c[m
+Author: charlesdurham <ctdurham@csupomona.edu>
+Date:   Sun Jun 8 15:13:58 2014 -0700
+
+    Removed more unnecessary files
+
+[33mcommit ee2e69c4b797c4b93bb2ff2c2b496ae49d95d761[m
+Author: Charles Durham <ctdurham@csupomona.edu>
+Date:   Sun Jun 8 14:44:46 2014 -0700
+
+    removed build files
+
+[33mcommit f90d0e0f232ff30b20183be117e7b84a340837d1[m
+Author: Charles Durham <ctdurham@csupomona.edu>
+Date:   Sun Jun 8 14:38:51 2014 -0700
+
+    persistance through close
+
+[33mcommit 4c9f73f125b18199a6a17275d74da3caadb0cd55[m
+Author: Charles Durham <ctdurham@csupomona.edu>
+Date:   Sat Jun 7 21:37:48 2014 -0700
+
+    Initial commit
