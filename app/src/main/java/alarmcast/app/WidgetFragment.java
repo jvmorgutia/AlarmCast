@@ -72,7 +72,7 @@ public abstract class WidgetFragment extends Fragment implements DlgWidgetPicker
         String jsonString = gson.toJson(widgets, new TypeToken<ArrayList<Widget>>(){}.getType());
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-        sharedPref.edit().putString(saveLoc, jsonString).commit();
+        sharedPref.edit().putString(saveLoc, jsonString).apply();
     }
 
     @Override
