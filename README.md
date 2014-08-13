@@ -4,4 +4,4 @@ Android application that streams media content on a TV when a device's stock ala
 
 Libraries:
 
-http://jgilfelt.github.io/android-actionbarstylegenerator/
+Action Bar Generator http://jgilfelt.github.io/android-actionbarstylegenerator/
