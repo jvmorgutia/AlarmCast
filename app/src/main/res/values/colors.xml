@@ -3,6 +3,7 @@
     <color name="divider">#B6B6B6</color>
     <color name="icons">#FFFFFF</color>
     <color name="accent">#FF4081</color>
+    <color name="accent_light">#ff80ab</color>
     <color name="primary">#3F51B5</color>
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#C5CAE9</color>

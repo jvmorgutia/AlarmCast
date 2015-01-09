@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.view.View;
 
 import alarmcast.app.widgets.CalendarWidget;
 import alarmcast.app.widgets.MapWidget;
@@ -19,15 +20,17 @@ public class DlgWidgetPicker extends DialogFragment implements DialogInterface.O
     private OnDialogComplete mListener;
     private Widget selectedWidget;
     private int ndx;
+    private View v;
 
     public static interface OnDialogComplete {
-        public abstract void onDialogComplete(int ndx,Widget selectedWidget);
+        public abstract void onDialogComplete(View v, Widget selectedWidget, int ndx);
     }
 
-    public static DlgWidgetPicker newInstance(int ndx, OnDialogComplete mListener) {
+    public static DlgWidgetPicker newInstance(OnDialogComplete mListener, View v, int ndx) {
         DlgWidgetPicker dwp = new DlgWidgetPicker();
-        dwp.ndx = ndx;
         dwp.mListener = mListener;
+        dwp.ndx = ndx;
+        dwp.v = v;
         return dwp;
     }
 
@@ -61,7 +64,7 @@ public class DlgWidgetPicker extends DialogFragment implements DialogInterface.O
                 break;
 
         }
-        mListener.onDialogComplete(ndx,selectedWidget);
+        mListener.onDialogComplete(v, selectedWidget, ndx);
     }
 
 

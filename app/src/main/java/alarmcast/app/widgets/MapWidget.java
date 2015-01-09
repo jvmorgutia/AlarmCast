@@ -31,10 +31,10 @@ public class MapWidget extends Widget {
 
     }
     public void setStart(String s, Context c) {
-        start = Widget.toLatLng(s,c);
+        start = Widget.toLatLng(s, c);
     }
     public void setEnd(String s, Context c) {
-        start = Widget.toLatLng(s,c);
+        start = Widget.toLatLng(s, c);
     }
 
     @Override

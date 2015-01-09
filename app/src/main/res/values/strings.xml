@@ -26,7 +26,7 @@
     <!-- Dialog Buttons -->
     <string name="dlg_accept">Accept</string>
     <string name="dlg_cancel">Cancel</string>
-    <string name="dlg_use_current">User Current</string>
+    <string name="dlg_use_current">Use Current</string>
     <string name="toast_no_setting">No setting found for this widget.</string>
 
 

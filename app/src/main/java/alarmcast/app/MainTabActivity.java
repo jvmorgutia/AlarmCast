@@ -17,8 +17,7 @@ import alarmcast.app.widgets.Widget;
 /**
  * Created by charles on 6/9/14.
  */
-public class MainTabActivity extends ActionBarActivity implements ActionBar.TabListener,
-        AdapterWidget.OnSettingClick {
+public class MainTabActivity extends ActionBarActivity implements ActionBar.TabListener {
 
     private static final int NUM_TABS = 3;
 
@@ -51,18 +50,6 @@ public class MainTabActivity extends ActionBarActivity implements ActionBar.TabL
         }
     }
 
-
-    @Override
-    public void onSettingClick(int ndx, Widget curWidget) {
-        DialogFragment dialogFrag = curWidget.getDialog();
-
-        if (dialogFrag != null)
-            dialogFrag.show(getSupportFragmentManager(), null);
-        else {
-            Toast.makeText(this, getString(R.string.toast_no_setting),
-                    Toast.LENGTH_LONG).show();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

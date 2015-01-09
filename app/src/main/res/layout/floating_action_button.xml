@@ -7,7 +7,7 @@
     fab:fab_colorNormal="@color/accent"
     fab:fab_title="Action A"
     android:layout_margin="5dp"
-    fab:fab_colorPressed="#ffffff"
+    fab:fab_colorPressed="@color/accent_light"
     fab:fab_icon="@drawable/ic_action_save"
     android:id="@+id/fab_four"
     android:layout_gravity="end|bottom" />
