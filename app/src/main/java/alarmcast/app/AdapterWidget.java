@@ -43,7 +43,7 @@ public class AdapterWidget extends ArrayAdapter<Widget> {
 
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.gv_item_widget, parent,false);
+            v = inflater.inflate(R.layout.widget, parent,false);
         }
 
         int height = parent.getHeight();

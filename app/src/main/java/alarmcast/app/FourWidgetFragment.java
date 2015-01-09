@@ -6,6 +6,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 
 public class FourWidgetFragment extends WidgetFragment {
@@ -13,8 +16,8 @@ public class FourWidgetFragment extends WidgetFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_four_widget, container, false);
+        View v = inflater.inflate(R.layout.frag_four_widget, container, false);
+        /*View v = inflater.inflate(R.layout.fragment_four_widget, container, false);
 
         GridView gridview = (GridView) v.findViewById(R.id.gv_four_widget_picker);
         //Remove scrollbar from GridView
@@ -27,9 +30,9 @@ public class FourWidgetFragment extends WidgetFragment {
         if(widgets == null)
             widgets = loadWidgets(SAVE_FOUR_WIDGETS);
 
-        adapterWidget = new AdapterWidget(getActivity(), R.layout.gv_item_widget, widgets);
+        adapterWidget = new AdapterWidget(getActivity(), R.layout.widget, widgets);
 
-        gridview.setAdapter(adapterWidget);
+        gridview.setAdapter(adapterWidget);*/
 
         return v;
     }
@@ -40,4 +43,5 @@ public class FourWidgetFragment extends WidgetFragment {
 
         saveWidgets(SAVE_FOUR_WIDGETS);
     }
+
 }

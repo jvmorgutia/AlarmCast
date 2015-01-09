@@ -8,4 +8,5 @@
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:icon">@color/icons</item>
     </style>
+
 </resources>

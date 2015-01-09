@@ -15,24 +15,7 @@ public class ThreeWidgetFragment extends WidgetFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_three_widget, container, false);
-
-        GridView gridview = (GridView) v.findViewById(R.id.gv_three_widget_picker);
-        //Remove scrollbar from GridView
-        gridview.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return event.getAction() == MotionEvent.ACTION_MOVE;
-            }
-        });
-
-        gridview.setOnItemClickListener(this);
-        if(widgets == null)
-            widgets = loadWidgets(SAVE_THREE_WIDGETS);
-
-        adapterWidget = new AdapterWidget(getActivity(), R.layout.gv_item_widget, widgets);
-
-        gridview.setAdapter(adapterWidget);
-
+        View v = inflater.inflate(R.layout.frag_three_widget, container, false);
         return v;
     }
 
