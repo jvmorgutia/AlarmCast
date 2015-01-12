@@ -19,6 +19,7 @@ public class FourWidgetFragment extends BaseWidgetFragment {
         initWidgetView(v.findViewById(R.id.widget_four_tr), widgets.get(1), 1);
         initWidgetView(v.findViewById(R.id.widget_four_bl), widgets.get(2), 2);
         initWidgetView(v.findViewById(R.id.widget_four_br), widgets.get(3), 3);
+        initFabView(v);
 
         return v;
     }

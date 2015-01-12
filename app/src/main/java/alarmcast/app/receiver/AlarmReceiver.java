@@ -68,7 +68,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         String device = prefs.getString(KEY_MEDIA_ROUTE, null);
         if (device != null) {
             Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Uri.class, new UriDeserializer())
+                    .registerTypeAdapter(Uri.class, new CastJson.UriSerializer.UriDeserializer())
                     .create();
             mSelectedDevice = gson.fromJson(device, CastDevice.class);
         }
@@ -96,7 +96,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             String key = "SELECTED_DEVICE";
             Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Uri.class, new UriSerializer())
+                    .registerTypeAdapter(Uri.class, new CastJson.UriSerializer())
                     .create();
             prefs.edit().putString(key,gson.toJson(mSelectedDevice)).commit();
             Log.d("Saving device",new Gson().toJson(mSelectedDevice));
@@ -316,23 +316,5 @@ public class AlarmReceiver extends BroadcastReceiver {
         public void onMessageReceived(CastDevice castDevice, String namespace, String message) {
             Log.d(TAG, "onMessageReceived: " + message);
         }
-
     }
-    class UriDeserializer implements JsonDeserializer<Uri> {
-        @Override
-        public Uri deserialize(final JsonElement src, final Type srcType,
-                               final JsonDeserializationContext context) throws JsonParseException {
-            return Uri.parse(src.getAsString());
-        }
-    }
-    public class UriSerializer implements JsonSerializer<Uri> {
-        public JsonElement serialize(Uri src, Type typeOfSrc, JsonSerializationContext context) {
-            return new JsonPrimitive(src.toString());
-        }
-    }
-    private class Item {
-        public String id;
-        public String text;
-    }
-
 }

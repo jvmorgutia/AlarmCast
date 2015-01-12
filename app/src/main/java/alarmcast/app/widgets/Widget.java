@@ -31,6 +31,15 @@ public abstract class Widget implements Parcelable {
     public int getImage() {return image;}
 
     @Override
+    public boolean equals(Object other) {
+        if(other instanceof Widget) {
+            Widget oWidget = (Widget) other;
+            return oWidget.title.equals(title) && oWidget.image == image;
+        }
+        return false;
+    }
+
+    @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeInt(image);

@@ -29,6 +29,9 @@
     <string name="dlg_use_current">Use Current</string>
     <string name="toast_no_setting">No setting found for this widget.</string>
 
+    <!-- Toasts -->
+    <string name="tst_save_widgets">Current widgets will display on TV when your alarm goes off.</string>
+
 
 
 

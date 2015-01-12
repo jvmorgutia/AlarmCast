@@ -17,6 +17,7 @@ public class TwoWidgetFragment extends BaseWidgetFragment {
 
         initWidgetView(v.findViewById(R.id.widget_two_l), widgets.get(0), 0);
         initWidgetView(v.findViewById(R.id.widget_two_r), widgets.get(1), 1);
+        initFabView(v);
 
         return v;
     }

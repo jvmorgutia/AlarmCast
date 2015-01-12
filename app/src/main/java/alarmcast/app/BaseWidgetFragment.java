@@ -2,16 +2,17 @@ package alarmcast.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -27,11 +28,16 @@ import alarmcast.app.widgets.JsonWidget;
  */
 public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPicker.OnDialogComplete {
     private static final String SAVE_TEMP_WIDGETS = "widgets";
+    public static final String SAVE_CASTABLE_WIDGETS = "cast_widgets";
+
     protected ArrayList<Widget> widgets;
+    private ArrayList<Widget> widgetsCastable;
+    private FloatingActionButton fab;
 
     public void onDialogComplete(View v, Widget selectedWidget, int ndx) {
         widgets.set(ndx, selectedWidget);
         initWidgetView(v, selectedWidget, ndx);
+        new CompareWidgets().execute();
     }
 
     @Override
@@ -46,6 +52,7 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
 
         if (savedInstanceState != null && savedInstanceState.containsKey(SAVE_TEMP_WIDGETS))
             widgets = savedInstanceState.getParcelableArrayList(SAVE_TEMP_WIDGETS);
+        widgetsCastable = loadWidgets(SAVE_CASTABLE_WIDGETS);
     }
 
     public ArrayList<Widget> loadWidgets(String saveLoc) {
@@ -77,7 +84,21 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         sharedPref.edit().putString(saveLoc, jsonString).apply();
     }
 
+    public void initFabView(View parent) {
+        fab = (FloatingActionButton) parent.findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+        new CompareWidgets().execute();
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BaseWidgetFragment.this.getActivity(),R.string.tst_save_widgets,Toast.LENGTH_LONG).show();
+                saveWidgets(SAVE_CASTABLE_WIDGETS);
+                widgetsCastable = widgets;
+                fab.setVisibility(View.GONE);
+            }
+        });
+    }
 
     public void initWidgetView(final View v, final Widget w, final int ndx) {
         TextView tv = (TextView) v.findViewById(R.id.tv_widget_title);
@@ -113,6 +134,19 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         });
     }
 
+    private class CompareWidgets extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            return widgetsCastable.containsAll(widgets)
+                    && widgets.containsAll(widgetsCastable)
+                    && !widgetsCastable.contains(new EmptyWidget());
+        }
 
 
+        @Override
+        protected void onPostExecute(Boolean result) {
+            if(!result)
+                fab.setVisibility(View.VISIBLE);
+        }
+    }
 }

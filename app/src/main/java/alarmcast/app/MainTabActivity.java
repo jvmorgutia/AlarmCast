@@ -6,11 +6,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.MediaRouteActionProvider;
+import android.support.v7.media.MediaRouteSelector;
+import android.support.v7.media.MediaRouter;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.google.android.gms.cast.CastDevice;
+import com.google.android.gms.cast.CastMediaControlIntent;
 
 import alarmcast.app.widgets.Widget;
 
@@ -22,7 +30,24 @@ public class MainTabActivity extends ActionBarActivity implements ActionBar.TabL
     private static final int NUM_TABS = 3;
 
     private ViewPager mViewPager;
+    private final MediaRouter.Callback mediaRouterCallback = new MediaRouter.Callback()
+    {
+        @Override
+        public void onRouteSelected(MediaRouter router, MediaRouter.RouteInfo route)
+        {
+            CastDevice device = CastDevice.getFromBundle(route.getExtras());
+            //setSelectedDevice(device);
+        }
 
+        @Override
+        public void onRouteUnselected(MediaRouter router, MediaRouter.RouteInfo route)
+        {
+            //setSelectedDevice(null);
+        }
+    };
+
+    private MediaRouter mediaRouter;
+    private MediaRouteSelector mediaRouteSelector;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_main);
@@ -48,16 +73,35 @@ public class MainTabActivity extends ActionBarActivity implements ActionBar.TabL
                             .setText(mAppSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        mediaRouter = MediaRouter.getInstance(getApplicationContext());
+        mediaRouteSelector = new MediaRouteSelector.Builder().addControlCategory(CastMediaControlIntent.categoryForCast(getString(R.string.app_id))).build();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem mediaRouteMenuItem = menu.findItem(R.id.media_route_menu_item);
+        MediaRouteActionProvider mediaRouteActionProvider = (MediaRouteActionProvider) MenuItemCompat.getActionProvider(mediaRouteMenuItem);
+        mediaRouteActionProvider.setRouteSelector(mediaRouteSelector);
         return true;
     }
 
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        mediaRouter.addCallback(mediaRouteSelector, mediaRouterCallback, MediaRouter.CALLBACK_FLAG_PERFORM_ACTIVE_SCAN);
+    }
 
+    @Override
+    protected void onStop()
+    {
+        //setSelectedDevice(null);
+        mediaRouter.removeCallback(mediaRouterCallback);
+        super.onStop();
+    }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {

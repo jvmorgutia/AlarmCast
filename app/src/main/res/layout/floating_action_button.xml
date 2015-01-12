@@ -9,5 +9,5 @@
     android:layout_margin="5dp"
     fab:fab_colorPressed="@color/accent_light"
     fab:fab_icon="@drawable/ic_action_save"
-    android:id="@+id/fab_four"
+    android:id="@+id/fab"
     android:layout_gravity="end|bottom" />

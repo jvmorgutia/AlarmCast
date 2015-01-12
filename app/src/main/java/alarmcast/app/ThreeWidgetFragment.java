@@ -21,6 +21,8 @@ public class ThreeWidgetFragment extends BaseWidgetFragment {
         initWidgetView(v.findViewById(R.id.widget_three_l), widgets.get(0), 0);
         initWidgetView(v.findViewById(R.id.widget_three_tr), widgets.get(1), 1);
         initWidgetView(v.findViewById(R.id.widget_three_br), widgets.get(2), 2);
+        initFabView(v);
+
 
         return v;
     }
