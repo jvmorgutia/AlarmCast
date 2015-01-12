@@ -19,17 +19,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
-import alarmcast.app.widgets.Widget;
 import alarmcast.app.widgets.EmptyWidget;
 import alarmcast.app.widgets.JsonWidget;
+import alarmcast.app.widgets.Widget;
 
-/**
- * Created by charles on 6/9/14.
- */
 public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPicker.OnDialogComplete {
-    private static final String SAVE_TEMP_WIDGETS = "widgets";
     public static final String SAVE_CASTABLE_WIDGETS = "cast_widgets";
-
+    private static final String SAVE_TEMP_WIDGETS = "widgets";
     protected ArrayList<Widget> widgets;
     private ArrayList<Widget> widgetsCastable;
     private FloatingActionButton fab;
@@ -56,9 +52,9 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
     }
 
     public ArrayList<Widget> loadWidgets(String saveLoc) {
-        GsonBuilder gsonBilder = new GsonBuilder();
-        gsonBilder.registerTypeAdapter(Widget.class, new JsonWidget());
-        Gson gson = gsonBilder.create();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Widget.class, new JsonWidget());
+        Gson gson = gsonBuilder.create();
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         String jsonString = sharedPref.getString(saveLoc, null);
@@ -67,7 +63,7 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         }.getType());
 
         if (widgets == null) {
-            widgets = new ArrayList<Widget>();
+            widgets = new ArrayList<>();
 
             for (int i = 0; i < 4; i++)
                 widgets.add(new EmptyWidget());
@@ -75,9 +71,9 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         return widgets;
     }
     public void saveWidgets(String saveLoc) {
-        GsonBuilder gsonBilder = new GsonBuilder();
-        gsonBilder.registerTypeAdapter(Widget.class, new JsonWidget());
-        Gson gson = gsonBilder.create();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Widget.class, new JsonWidget());
+        Gson gson = gsonBuilder.create();
         String jsonString = gson.toJson(widgets, new TypeToken<ArrayList<Widget>>(){}.getType());
 
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);

@@ -12,7 +12,7 @@ public class FourWidgetFragment extends BaseWidgetFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_four_widget, container, false);
-        if(widgets == null)
+        if (widgets == null)
             widgets = loadWidgets(SAVE_FOUR_WIDGETS);
 
         initWidgetView(v.findViewById(R.id.widget_four_tl), widgets.get(0), 0);
@@ -29,5 +29,4 @@ public class FourWidgetFragment extends BaseWidgetFragment {
         super.onPause();
         saveWidgets(SAVE_FOUR_WIDGETS);
     }
-
 }

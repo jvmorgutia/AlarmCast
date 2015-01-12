@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -13,19 +14,17 @@ import android.widget.EditText;
 import alarmcast.app.R;
 import alarmcast.app.widgets.YoutubeWidget;
 
-/**
- * Created by charles on 6/7/14.
- */
 public class DlgYoutube extends DialogFragment {
-    private YoutubeWidget curWidget;
+    private YoutubeWidget mCurWidget;
 
     public static DlgYoutube newInstance(YoutubeWidget curWidget) {
         DlgYoutube dyt = new DlgYoutube();
-        dyt.curWidget = curWidget;
+        dyt.mCurWidget = curWidget;
         return dyt;
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
@@ -41,7 +40,7 @@ public class DlgYoutube extends DialogFragment {
                         final Dialog d = (Dialog)dialog;
                         Editable ytURL = ((EditText) d.findViewById(R.id.yt_url)).getText();
                         if (ytURL != null)
-                            curWidget.setYtURL(ytURL.toString());
+                            mCurWidget.setYtURL(ytURL.toString());
 
                     }
                 })

@@ -4,29 +4,27 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 
-
 import alarmcast.app.R;
 import alarmcast.app.widgets.WeatherWidget;
 
-/**
- * Created by charles on 6/7/14.
- */
 public class DlgWeather extends DialogFragment{
-    private WeatherWidget curWidget;
+    private WeatherWidget mCurWidget;
 
     public static DlgWeather newInstance(WeatherWidget curWidget) {
         DlgWeather dyt = new DlgWeather();
-        dyt.curWidget = curWidget;
+        dyt.mCurWidget = curWidget;
 
         return dyt;
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -40,7 +38,7 @@ public class DlgWeather extends DialogFragment{
 
                         Editable location = ((EditText) d.findViewById(R.id.location)).getText();
                         if (location != null)
-                            curWidget.setLocation(location.toString(), getActivity());
+                            mCurWidget.setLocation(location.toString(), getActivity());
                     }
                 })
                 .setNeutralButton(getActivity().getString(R.string.dlg_use_current), new DialogInterface.OnClickListener() {

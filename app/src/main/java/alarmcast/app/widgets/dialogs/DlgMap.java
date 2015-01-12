@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -12,20 +13,18 @@ import android.widget.EditText;
 import alarmcast.app.R;
 import alarmcast.app.widgets.MapWidget;
 
-/**
- * Created by charles on 6/7/14.
- */
 public class DlgMap extends DialogFragment {
-    private MapWidget curWidget;
+    private MapWidget mCurWidget;
 
     public static DlgMap newInstance(MapWidget curWidget) {
         DlgMap dyt = new DlgMap();
-        dyt.curWidget = curWidget;
+        dyt.mCurWidget = curWidget;
 
         return dyt;
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -41,11 +40,11 @@ public class DlgMap extends DialogFragment {
 
                         Editable etStart = ((EditText) d.findViewById(R.id.start)).getText();
                         if (etStart != null)
-                            curWidget.setStart(etStart.toString(), getActivity());
+                            mCurWidget.setStart(etStart.toString(), getActivity());
 
                         Editable etEnd = ((EditText) d.findViewById(R.id.end)).getText();
                         if (etEnd != null)
-                            curWidget.setEnd(etEnd.toString(),getActivity());
+                            mCurWidget.setEnd(etEnd.toString(), getActivity());
 
                     }
                 })
