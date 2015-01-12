@@ -4,4 +4,5 @@ Android application that streams media content on a TV when a device's stock ala
 
 Libraries:
 
-Action Bar Generator http://jgilfelt.github.io/android-actionbarstylegenerator/
+android-floating-action-button
+https://github.com/futuresimple/android-floating-action-button
