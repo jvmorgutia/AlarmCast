@@ -36,6 +36,11 @@ public class YoutubeWidget extends Widget {
     }
 
     @Override
+    public boolean equals(Object o) {
+        return o instanceof YoutubeWidget && super.equals(o) && ytURL.equals(((YoutubeWidget) o).ytURL);
+    }
+
+    @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);
 

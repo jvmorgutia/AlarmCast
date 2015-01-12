@@ -35,7 +35,10 @@ public class WeatherWidget extends Widget {
         return DlgWeather.newInstance(this);
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof WeatherWidget && super.equals(o) && location.equals(((WeatherWidget) o).location);
+    }
 
 
     @Override

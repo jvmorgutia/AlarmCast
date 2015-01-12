@@ -42,7 +42,10 @@ public class MapWidget extends Widget {
         return DlgMap.newInstance(this);
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof MapWidget && super.equals(o) && start.equals(((MapWidget) o).start) && end.equals(((MapWidget) o).end);
+    }
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);

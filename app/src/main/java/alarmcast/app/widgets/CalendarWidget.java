@@ -17,7 +17,6 @@ public class CalendarWidget extends Widget {
         super(TITLE_CALENDAR,IMAGE_CALENDAR);
     }
 
-
     //TODO: Make calendar dialog
     @Override
     public DialogFragment getDialog() {
@@ -27,7 +26,6 @@ public class CalendarWidget extends Widget {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);
-
     }
     @Override
     public int describeContents() {
