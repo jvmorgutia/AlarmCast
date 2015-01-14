@@ -44,7 +44,23 @@ public class MapWidget extends Widget {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof MapWidget && super.equals(o) && start.equals(((MapWidget) o).start) && end.equals(((MapWidget) o).end);
+        if(o instanceof MapWidget) {
+            MapWidget mOther = (MapWidget) o;
+            if(start == null && end == null) {
+                return mOther.start == null && mOther.end == null;
+            }
+            if(start == null) {
+                return end.equals(mOther.end);
+            }
+            else if(end == null) {
+                return start.equals(mOther.start);
+            }
+            else {
+                return start.equals(mOther.start) && end.equals(mOther.end);
+            }
+        }
+        return false;
+
     }
     @Override
     public void writeToParcel(Parcel parcel, int i) {

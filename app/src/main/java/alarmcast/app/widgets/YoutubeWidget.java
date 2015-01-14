@@ -37,7 +37,16 @@ public class YoutubeWidget extends Widget {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof YoutubeWidget && super.equals(o) && ytURL.equals(((YoutubeWidget) o).ytURL);
+        if(o instanceof YoutubeWidget) {
+            YoutubeWidget ytOther = (YoutubeWidget) o;
+            if(ytURL == null) {
+                return ytOther.ytURL == null;
+            }
+            else {
+                return ytURL.equals(ytOther.ytURL);
+            }
+        }
+        return false;
     }
 
     @Override

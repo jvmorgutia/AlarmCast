@@ -37,7 +37,16 @@ public class WeatherWidget extends Widget {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof WeatherWidget && super.equals(o) && location.equals(((WeatherWidget) o).location);
+        if(o instanceof WeatherWidget) {
+            WeatherWidget wOther = (WeatherWidget) o;
+            if(location == null) {
+                return wOther.location == null;
+            }
+            else {
+                return location.equals(wOther.location);
+            }
+        }
+        return false;
     }
 
 

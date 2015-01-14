@@ -13,6 +13,7 @@ import android.widget.EditText;
 import alarmcast.app.R;
 import alarmcast.app.widgets.WeatherWidget;
 
+//TODO: Implement functionality for use current
 public class DlgWeather extends DialogFragment{
     private WeatherWidget mCurWidget;
 
