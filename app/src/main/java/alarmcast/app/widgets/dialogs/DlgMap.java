@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 
 import alarmcast.app.R;
@@ -27,21 +28,31 @@ public class DlgMap extends DialogFragment {
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
 
+        View view = getActivity().getLayoutInflater().inflate(R.layout.dlg_map_setting, null);
 
-        builder.setView(inflater.inflate(R.layout.dlg_map_setting, null))
+        EditText tvStart = (EditText)  view.findViewById(R.id.tv_map_start);
+        if(mCurWidget.startStr != null) {
+            tvStart.setText(mCurWidget.startStr);
+        }
+
+        EditText tvEnd = (EditText)  view.findViewById(R.id.tv_map_end);
+        if(mCurWidget.endStr != null) {
+            tvEnd.setText(mCurWidget.endStr);
+        }
+
+        builder.setView(view)
 
                 .setPositiveButton(getActivity().getString(R.string.dlg_accept), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Dialog d = (Dialog) dialog;
 
-                        Editable etStart = ((EditText) d.findViewById(R.id.start)).getText();
+                        Editable etStart = ((EditText) d.findViewById(R.id.tv_map_start)).getText();
                         if (etStart != null)
                             mCurWidget.setStart(etStart.toString(), getActivity());
 
-                        Editable etEnd = ((EditText) d.findViewById(R.id.end)).getText();
+                        Editable etEnd = ((EditText) d.findViewById(R.id.tv_map_end)).getText();
                         if (etEnd != null)
                             mCurWidget.setEnd(etEnd.toString(), getActivity());
 

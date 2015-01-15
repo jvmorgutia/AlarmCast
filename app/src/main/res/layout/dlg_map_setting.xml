@@ -16,14 +16,14 @@
         android:scaleType="center" />
 
     <EditText
-        android:id="@+id/start"
+        android:id="@+id/tv_map_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dp"
         android:hint="@string/et_hint_map_start" />
 
     <EditText
-        android:id="@+id/end"
+        android:id="@+id/tv_map_end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dp"

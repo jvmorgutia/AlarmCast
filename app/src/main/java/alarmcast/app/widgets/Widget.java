@@ -3,9 +3,11 @@ package alarmcast.app.widgets;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
+import android.view.View;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -21,11 +23,17 @@ public abstract class Widget implements Parcelable {
     private int image;
 
     public abstract DialogFragment getDialog();
+    public abstract Widget getCopy();
 
     protected Widget(String title, int image) {
         this.title = title;
         this.image = image;
     }
+    protected Widget(Widget toClone) {
+        this.title = toClone.title;
+        this.image = toClone.image;
+    }
+
 
     public String getTitle() {return title;}
     public int getImage() {return image;}
@@ -63,5 +71,4 @@ public abstract class Widget implements Parcelable {
         }
         return null;
     }
-
 }

@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class TwoWidgetFragment extends BaseWidgetFragment {
-    private static final String SAVE_TWO_WIDGETS = "two_widgets";
+    public static final String SAVE_WIDGETS = "two_widgets";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_two_widget, container, false);
 
         if(widgets == null)
-            widgets = loadWidgets(SAVE_TWO_WIDGETS);
+            widgets = loadWidgets(SAVE_WIDGETS);
 
         initWidgetView(v.findViewById(R.id.widget_two_l), widgets.get(0), 0);
         initWidgetView(v.findViewById(R.id.widget_two_r), widgets.get(1), 1);
@@ -26,6 +26,6 @@ public class TwoWidgetFragment extends BaseWidgetFragment {
     public void onPause() {
         super.onPause();
 
-        saveWidgets(SAVE_TWO_WIDGETS);
+        saveWidgets(SAVE_WIDGETS);
     }
 }

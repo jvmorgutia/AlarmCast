@@ -18,16 +18,31 @@ public class WeatherWidget extends Widget {
     private final static int IMAGE_WEATHER = R.drawable.weather;
 
     private LatLng location;
+    public String locationStr;
 
     public WeatherWidget(LatLng location) {
         super(TITLE_WEATHER, IMAGE_WEATHER);
         this.location = location;
+
     }
+    private WeatherWidget(WeatherWidget toClone) {
+        super(toClone);
+        if(location != null) {
+            this.location = new LatLng(toClone.location.latitude, toClone.location.longitude);
+        }
+        this.locationStr = toClone.locationStr;
+    }
+    @Override
+    public WeatherWidget getCopy() {
+        return new WeatherWidget(this);
+    }
+
     public WeatherWidget() {
         super(TITLE_WEATHER, IMAGE_WEATHER);
     }
 
     public void setLocation(String s, Context c) {
+        locationStr = s;
         location = toLatLng(s,c);
     }
     @Override

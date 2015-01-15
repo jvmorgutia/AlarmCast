@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 
 import alarmcast.app.R;
@@ -28,16 +29,20 @@ public class DlgWeather extends DialogFragment{
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = getActivity().getLayoutInflater().inflate(R.layout.dlg_weather_setting, null);
 
-        builder.setView(inflater.inflate(R.layout.dlg_weather_setting, null))
+        EditText tvLoc = (EditText) view.findViewById(R.id.tv_weather_location);
+        if(mCurWidget.locationStr != null) {
+            tvLoc.setText(mCurWidget.locationStr);
+        }
 
+        builder.setView(view)
                 .setPositiveButton(getActivity().getString(R.string.dlg_accept), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Dialog d = (Dialog) dialog;
 
-                        Editable location = ((EditText) d.findViewById(R.id.location)).getText();
+                        Editable location = ((EditText) d.findViewById(R.id.tv_weather_location)).getText();
                         if (location != null)
                             mCurWidget.setLocation(location.toString(), getActivity());
                     }

@@ -25,7 +25,7 @@
         android:id="@+id/tv_info_weather" />
 
     <EditText
-        android:id="@+id/location"
+        android:id="@+id/tv_weather_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="6dp"

@@ -17,6 +17,10 @@ public class CalendarWidget extends Widget {
         super(TITLE_CALENDAR,IMAGE_CALENDAR);
     }
 
+    public CalendarWidget getCopy() {
+        return new CalendarWidget();
+    }
+
     //TODO: Make calendar dialog
     @Override
     public DialogFragment getDialog() {

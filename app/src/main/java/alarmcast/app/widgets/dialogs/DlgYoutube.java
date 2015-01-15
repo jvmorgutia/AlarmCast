@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.EditText;
 
 import alarmcast.app.R;
@@ -27,18 +28,21 @@ public class DlgYoutube extends DialogFragment {
     @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = getActivity().getLayoutInflater().inflate(R.layout.dlg_youtube_setting, null);
 
+        EditText etYtUrl = (EditText) view.findViewById(R.id.tv_yt_url);
+        if(mCurWidget.ytURL != null) {
+            etYtUrl.setText(mCurWidget.ytURL);
+        }
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dlg_youtube_setting, null))
+        builder.setView(view)
                 // Add action buttons
                 .setPositiveButton(getActivity().getString(R.string.dlg_accept), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         final Dialog d = (Dialog)dialog;
-                        Editable ytURL = ((EditText) d.findViewById(R.id.yt_url)).getText();
+                        Editable ytURL = ((EditText) d.findViewById(R.id.tv_yt_url)).getText();
                         if (ytURL != null)
                             mCurWidget.setYtURL(ytURL.toString());
 

@@ -19,22 +19,43 @@ public class MapWidget extends Widget {
     private final static int IMAGE_MAP = R.drawable.map;
 
     private LatLng start;
+    public String startStr;
+
     private LatLng end;
+    public String endStr;
 
     public MapWidget(LatLng start, LatLng end) {
         super(TITLE_MAP, IMAGE_MAP);
         this.start = start;
         this.end = end;
     }
+    private MapWidget(MapWidget toClone) {
+        super(toClone);
+        if(start != null) {
+            this.start = new LatLng(toClone.start.latitude, toClone.start.longitude);
+        }
+        if(end != null ) {
+            this.end = new LatLng(toClone.end.latitude, toClone.end.longitude);
+        }
+        this.startStr = toClone.startStr;
+        this.endStr = toClone.endStr;
+    }
+    @Override
+    public MapWidget getCopy() {
+        return new MapWidget(this);
+    }
+
     public MapWidget() {
         super(TITLE_MAP, IMAGE_MAP);
 
     }
     public void setStart(String s, Context c) {
+        startStr = s;
         start = Widget.toLatLng(s, c);
     }
     public void setEnd(String s, Context c) {
-        start = Widget.toLatLng(s, c);
+        endStr = s;
+        end = Widget.toLatLng(s, c);
     }
 
     @Override

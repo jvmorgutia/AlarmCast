@@ -14,11 +14,20 @@ public class YoutubeWidget extends Widget {
     public final static String TITLE_YOUTUBE = "Youtube";
     private final static int IMAGE_YOUTUBE = R.drawable.youtube;
 
-    private String ytURL;
+    public String ytURL;
 
     public YoutubeWidget(String ytURL) {
         super(TITLE_YOUTUBE, IMAGE_YOUTUBE);
         this.ytURL = ytURL;
+    }
+
+    private YoutubeWidget(YoutubeWidget toClone) {
+        super(toClone);
+        this.ytURL = toClone.ytURL;
+    }
+    @Override
+    public YoutubeWidget getCopy() {
+        return new YoutubeWidget(this);
     }
 
     public YoutubeWidget() {
@@ -52,7 +61,6 @@ public class YoutubeWidget extends Widget {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel,i);
-
         parcel.writeString(ytURL);
 
     }

@@ -14,6 +14,9 @@ public class EmptyWidget extends Widget {
     public EmptyWidget() {
         super(TITLE_NONE,IMAGE_NONE);
     }
+    public EmptyWidget getCopy() {
+        return new EmptyWidget();
+    }
 
     @Override
     public DialogFragment getDialog() {

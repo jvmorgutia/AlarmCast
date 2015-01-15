@@ -49,7 +49,10 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         if (savedInstanceState != null && savedInstanceState.containsKey(SAVE_TEMP_WIDGETS))
             widgets = savedInstanceState.getParcelableArrayList(SAVE_TEMP_WIDGETS);
         widgetsCastable = loadWidgets(SAVE_CASTABLE_WIDGETS);
+
+
     }
+
 
     public ArrayList<Widget> loadWidgets(String saveLoc) {
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -65,10 +68,24 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         if (widgets == null) {
             widgets = new ArrayList<>();
 
-            for (int i = 0; i < 4; i++)
-                widgets.add(new EmptyWidget());
+            switch(saveLoc) {
+                case FourWidgetFragment.SAVE_WIDGETS:
+                    emptyWidgets(widgets,4);
+                    break;
+                case ThreeWidgetFragment.SAVE_WIDGETS:
+                    emptyWidgets(widgets,3);
+                    break;
+                case TwoWidgetFragment.SAVE_WIDGETS:
+                    emptyWidgets(widgets,2);
+                    break;
+            }
         }
         return widgets;
+    }
+    private void emptyWidgets(ArrayList<Widget> widgets, int size) {
+        for( int i = 0; i < size; i++) {
+            widgets.add(new EmptyWidget());
+        }
     }
     public void saveWidgets(String saveLoc) {
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -90,7 +107,10 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
             public void onClick(View v) {
                 Toast.makeText(BaseWidgetFragment.this.getActivity(),R.string.tst_save_widgets,Toast.LENGTH_LONG).show();
                 saveWidgets(SAVE_CASTABLE_WIDGETS);
-                widgetsCastable = widgets;
+                widgetsCastable = new ArrayList<>();
+                for(Widget w : widgets) {
+                    widgetsCastable.add(w.getCopy());
+                }
                 fab.setVisibility(View.GONE);
             }
         });
@@ -130,19 +150,25 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         });
     }
 
-    private class CompareWidgets extends AsyncTask<Void, Void, Boolean> {
+    class CompareWidgets extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Void... params) {
-            return widgetsCastable.containsAll(widgets)
-                    && widgets.containsAll(widgetsCastable)
-                    && !widgetsCastable.contains(new EmptyWidget());
+            if(widgetsCastable != null && widgets != null && widgetsCastable.size() == widgets.size()) {
+                for(int i = 0; i < widgets.size(); i++) {
+                    if(!widgets.get(i).equals(widgetsCastable.get(i))) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
-
 
         @Override
         protected void onPostExecute(Boolean result) {
-            if(!result)
+            if(!result) {
                 fab.setVisibility(View.VISIBLE);
+            }
         }
     }
 }

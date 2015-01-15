@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:scaleType="center" />
     <EditText
-        android:id="@+id/yt_url"
+        android:id="@+id/tv_yt_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="14dp"
