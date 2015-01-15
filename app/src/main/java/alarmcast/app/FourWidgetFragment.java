@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 public class FourWidgetFragment extends BaseWidgetFragment {
     public static final String SAVE_WIDGETS = "four_widgets";
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_four_widget, container, false);

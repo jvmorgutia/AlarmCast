@@ -26,8 +26,9 @@ import alarmcast.app.widgets.Widget;
 public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPicker.OnDialogComplete {
     public static final String SAVE_CASTABLE_WIDGETS = "cast_widgets";
     private static final String SAVE_TEMP_WIDGETS = "widgets";
+    private static ArrayList<Widget> widgetsCastable;
+
     protected ArrayList<Widget> widgets;
-    private ArrayList<Widget> widgetsCastable;
     private FloatingActionButton fab;
 
     public void onDialogComplete(View v, Widget selectedWidget, int ndx) {
@@ -49,10 +50,15 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         if (savedInstanceState != null && savedInstanceState.containsKey(SAVE_TEMP_WIDGETS))
             widgets = savedInstanceState.getParcelableArrayList(SAVE_TEMP_WIDGETS);
         widgetsCastable = loadWidgets(SAVE_CASTABLE_WIDGETS);
-
-
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            new CompareWidgets().execute();
+        }
+    }
 
     public ArrayList<Widget> loadWidgets(String saveLoc) {
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -100,7 +106,6 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
     public void initFabView(View parent) {
         fab = (FloatingActionButton) parent.findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
-        new CompareWidgets().execute();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +173,9 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         protected void onPostExecute(Boolean result) {
             if(!result) {
                 fab.setVisibility(View.VISIBLE);
+            }
+            else {
+                fab.setVisibility(View.GONE);
             }
         }
     }
