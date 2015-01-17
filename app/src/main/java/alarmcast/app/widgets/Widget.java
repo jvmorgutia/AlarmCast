@@ -22,7 +22,12 @@ public abstract class Widget implements Parcelable {
     private String title;
     private int image;
 
-    public abstract DialogFragment getDialog();
+    public interface WidgetListener {
+        public void onWidgetClicked(Widget selectedWidget);
+    }
+
+    public abstract DialogFragment getDialog(WidgetListener wl);
+
     public abstract Widget getCopy();
 
     protected Widget(String title, int image) {

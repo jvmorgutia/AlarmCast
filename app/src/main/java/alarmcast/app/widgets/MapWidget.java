@@ -59,25 +59,25 @@ public class MapWidget extends Widget {
     }
 
     @Override
-    public DialogFragment getDialog() {
-        return DlgMap.newInstance(this);
+    public DialogFragment getDialog(WidgetListener wl) {
+        return DlgMap.newInstance(this, wl);
     }
 
     @Override
     public boolean equals(Object o) {
         if(o instanceof MapWidget) {
             MapWidget mOther = (MapWidget) o;
-            if(start == null && end == null) {
-                return mOther.start == null && mOther.end == null;
+            if(startStr == null && endStr == null) {
+                return mOther.startStr == null && mOther.endStr == null;
             }
-            if(start == null) {
-                return end.equals(mOther.end);
+            if(startStr == null) {
+                return endStr.equals(mOther.endStr);
             }
-            else if(end == null) {
-                return start.equals(mOther.start);
+            else if(endStr == null) {
+                return startStr.equals(mOther.startStr);
             }
             else {
-                return start.equals(mOther.start) && end.equals(mOther.end);
+                return startStr.equals(mOther.startStr) && endStr.equals(mOther.endStr);
             }
         }
         return false;

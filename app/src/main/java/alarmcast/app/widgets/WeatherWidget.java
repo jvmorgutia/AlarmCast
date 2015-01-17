@@ -46,19 +46,20 @@ public class WeatherWidget extends Widget {
         location = toLatLng(s,c);
     }
     @Override
-    public DialogFragment getDialog() {
-        return DlgWeather.newInstance(this);
+    public DialogFragment getDialog(WidgetListener wl) {
+        return DlgWeather.newInstance(this, wl);
     }
 
     @Override
     public boolean equals(Object o) {
         if(o instanceof WeatherWidget) {
+
             WeatherWidget wOther = (WeatherWidget) o;
-            if(location == null) {
-                return wOther.location == null;
+            if(locationStr == null) {
+                return wOther.locationStr == null;
             }
             else {
-                return location.equals(wOther.location);
+                return locationStr.equals(wOther.locationStr);
             }
         }
         return false;

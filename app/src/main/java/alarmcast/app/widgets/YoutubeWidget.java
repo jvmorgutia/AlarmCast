@@ -40,8 +40,8 @@ public class YoutubeWidget extends Widget {
     }
 
     @Override
-    public DialogFragment getDialog() {
-        return DlgYoutube.newInstance(this);
+    public DialogFragment getDialog(WidgetListener wl) {
+        return DlgYoutube.newInstance(this, wl);
     }
 
     @Override

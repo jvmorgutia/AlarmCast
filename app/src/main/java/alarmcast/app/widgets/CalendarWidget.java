@@ -23,7 +23,7 @@ public class CalendarWidget extends Widget {
 
     //TODO: Make calendar dialog
     @Override
-    public DialogFragment getDialog() {
+    public DialogFragment getDialog(WidgetListener wl) {
         return null;
     }
 

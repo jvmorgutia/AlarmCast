@@ -13,15 +13,17 @@ import android.widget.EditText;
 
 import alarmcast.app.R;
 import alarmcast.app.widgets.WeatherWidget;
+import alarmcast.app.widgets.Widget;
 
 //TODO: Implement functionality for use current
 public class DlgWeather extends DialogFragment{
     private WeatherWidget mCurWidget;
+    private Widget.WidgetListener wl;
 
-    public static DlgWeather newInstance(WeatherWidget curWidget) {
+    public static DlgWeather newInstance(WeatherWidget curWidget, Widget.WidgetListener wl) {
         DlgWeather dyt = new DlgWeather();
         dyt.mCurWidget = curWidget;
-
+        dyt.wl = wl;
         return dyt;
     }
 
@@ -45,6 +47,7 @@ public class DlgWeather extends DialogFragment{
                         Editable location = ((EditText) d.findViewById(R.id.tv_weather_location)).getText();
                         if (location != null)
                             mCurWidget.setLocation(location.toString(), getActivity());
+                        wl.onWidgetClicked(mCurWidget);
                     }
                 })
                 .setNeutralButton(getActivity().getString(R.string.dlg_use_current), new DialogInterface.OnClickListener() {

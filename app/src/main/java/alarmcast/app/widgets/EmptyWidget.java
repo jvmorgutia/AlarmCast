@@ -19,7 +19,7 @@ public class EmptyWidget extends Widget {
     }
 
     @Override
-    public DialogFragment getDialog() {
+    public DialogFragment getDialog(WidgetListener wl) {
         return null;
     }
 

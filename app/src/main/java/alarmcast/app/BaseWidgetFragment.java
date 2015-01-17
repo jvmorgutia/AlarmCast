@@ -136,14 +136,21 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DlgWidgetPicker.newInstance(BaseWidgetFragment.this, v, ndx).show(getActivity().getSupportFragmentManager(),null);
+                DlgWidgetPicker.newInstance(BaseWidgetFragment.this, v, ndx).show(getActivity().getSupportFragmentManager(), null);
             }
         });
 
         btSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment dialogFrag = w.getDialog();
+                DialogFragment dialogFrag = w.getDialog(new Widget.WidgetListener() {
+                    @Override
+                    public void onWidgetClicked(Widget selectedWidget) {
+                        widgets.set(ndx, selectedWidget);
+
+                        new CompareWidgets().execute();
+                    }
+                });
 
                 if (dialogFrag != null)
                     dialogFrag.show(getActivity().getSupportFragmentManager(), null);

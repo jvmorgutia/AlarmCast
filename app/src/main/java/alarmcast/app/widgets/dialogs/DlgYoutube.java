@@ -13,14 +13,16 @@ import android.view.View;
 import android.widget.EditText;
 
 import alarmcast.app.R;
+import alarmcast.app.widgets.Widget;
 import alarmcast.app.widgets.YoutubeWidget;
 
 public class DlgYoutube extends DialogFragment {
     private YoutubeWidget mCurWidget;
-
-    public static DlgYoutube newInstance(YoutubeWidget curWidget) {
+    private Widget.WidgetListener wl;
+    public static DlgYoutube newInstance(YoutubeWidget curWidget, Widget.WidgetListener wl) {
         DlgYoutube dyt = new DlgYoutube();
         dyt.mCurWidget = curWidget;
+        dyt.wl = wl;
         return dyt;
     }
 
@@ -43,8 +45,10 @@ public class DlgYoutube extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         final Dialog d = (Dialog)dialog;
                         Editable ytURL = ((EditText) d.findViewById(R.id.tv_yt_url)).getText();
-                        if (ytURL != null)
+                        if (ytURL != null && !ytURL.toString().equals(""))
                             mCurWidget.setYtURL(ytURL.toString());
+                        wl.onWidgetClicked(mCurWidget);
+
 
                     }
                 })

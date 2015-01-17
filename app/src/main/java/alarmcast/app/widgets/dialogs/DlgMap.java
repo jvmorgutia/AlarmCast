@@ -13,13 +13,15 @@ import android.widget.EditText;
 
 import alarmcast.app.R;
 import alarmcast.app.widgets.MapWidget;
+import alarmcast.app.widgets.Widget;
 
 public class DlgMap extends DialogFragment {
     private MapWidget mCurWidget;
-
-    public static DlgMap newInstance(MapWidget curWidget) {
+    private Widget.WidgetListener wl;
+    public static DlgMap newInstance(MapWidget curWidget, Widget.WidgetListener wl) {
         DlgMap dyt = new DlgMap();
         dyt.mCurWidget = curWidget;
+        dyt.wl = wl;
 
         return dyt;
     }
@@ -55,6 +57,8 @@ public class DlgMap extends DialogFragment {
                         Editable etEnd = ((EditText) d.findViewById(R.id.tv_map_end)).getText();
                         if (etEnd != null)
                             mCurWidget.setEnd(etEnd.toString(), getActivity());
+
+                        wl.onWidgetClicked(mCurWidget);
 
                     }
                 })
