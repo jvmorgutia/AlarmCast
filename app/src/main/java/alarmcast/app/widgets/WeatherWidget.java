@@ -10,9 +10,6 @@ import com.google.android.gms.maps.model.LatLng;
 import alarmcast.app.R;
 import alarmcast.app.widgets.dialogs.DlgWeather;
 
-/**
- * Created by charles on 6/6/14.
- */
 public class WeatherWidget extends Widget {
     public final static String TITLE_WEATHER = "Weather";
     private final static int IMAGE_WEATHER = R.drawable.weather;
@@ -20,11 +17,6 @@ public class WeatherWidget extends Widget {
     private LatLng location;
     public String locationStr;
 
-    public WeatherWidget(LatLng location) {
-        super(TITLE_WEATHER, IMAGE_WEATHER);
-        this.location = location;
-
-    }
     private WeatherWidget(WeatherWidget toClone) {
         super(toClone);
         if(location != null) {
@@ -43,7 +35,12 @@ public class WeatherWidget extends Widget {
 
     public void setLocation(String s, Context c) {
         locationStr = s;
-        location = toLatLng(s,c);
+        toLatLng(s,c, new LocationFinder() {
+            @Override
+            public void onLocationFound(LatLng loc) {
+                location = loc;
+            }
+        });
     }
     @Override
     public DialogFragment getDialog(WidgetListener wl) {

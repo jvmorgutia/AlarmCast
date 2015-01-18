@@ -16,11 +16,6 @@ public class YoutubeWidget extends Widget {
 
     public String ytURL;
 
-    public YoutubeWidget(String ytURL) {
-        super(TITLE_YOUTUBE, IMAGE_YOUTUBE);
-        this.ytURL = ytURL;
-    }
-
     private YoutubeWidget(YoutubeWidget toClone) {
         super(toClone);
         this.ytURL = toClone.ytURL;

@@ -24,11 +24,6 @@ public class MapWidget extends Widget {
     private LatLng end;
     public String endStr;
 
-    public MapWidget(LatLng start, LatLng end) {
-        super(TITLE_MAP, IMAGE_MAP);
-        this.start = start;
-        this.end = end;
-    }
     private MapWidget(MapWidget toClone) {
         super(toClone);
         if(start != null) {
@@ -51,11 +46,21 @@ public class MapWidget extends Widget {
     }
     public void setStart(String s, Context c) {
         startStr = s;
-        start = Widget.toLatLng(s, c);
+        toLatLng(s, c, new LocationFinder() {
+            @Override
+            public void onLocationFound(LatLng loc) {
+                start = loc;
+            }
+        });
     }
     public void setEnd(String s, Context c) {
         endStr = s;
-        end = Widget.toLatLng(s, c);
+        toLatLng(s, c, new LocationFinder() {
+            @Override
+            public void onLocationFound(LatLng loc) {
+                end = loc;
+            }
+        });
     }
 
     @Override
@@ -114,4 +119,6 @@ public class MapWidget extends Widget {
         start = new LatLng(in.readDouble(),in.readDouble());
         end = new LatLng(in.readDouble(),in.readDouble());
     }
+
+
 }
