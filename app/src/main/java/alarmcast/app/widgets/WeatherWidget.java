@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 import alarmcast.app.R;
+import alarmcast.app.utils.Location;
 import alarmcast.app.widgets.dialogs.DlgWeather;
 
 public class WeatherWidget extends Widget {
@@ -35,7 +36,7 @@ public class WeatherWidget extends Widget {
 
     public void setLocation(String s, Context c) {
         locationStr = s;
-        toLatLng(s,c, new LocationFinder() {
+        new Location(c).fromAddress(s, new Location.LocationFinder() {
             @Override
             public void onLocationFound(LatLng loc) {
                 location = loc;

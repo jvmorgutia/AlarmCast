@@ -162,7 +162,7 @@ public abstract class BaseWidgetFragment extends Fragment implements DlgWidgetPi
         });
     }
 
-    class CompareWidgets extends AsyncTask<Void, Void, Boolean> {
+    private class CompareWidgets extends AsyncTask<Void, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Void... params) {
             if(widgetsCastable != null && widgets != null && widgetsCastable.size() == widgets.size()) {

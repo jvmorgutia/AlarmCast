@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 import alarmcast.app.R;
+import alarmcast.app.utils.Location;
 import alarmcast.app.widgets.dialogs.DlgMap;
 
 /**
@@ -46,7 +47,7 @@ public class MapWidget extends Widget {
     }
     public void setStart(String s, Context c) {
         startStr = s;
-        toLatLng(s, c, new LocationFinder() {
+        new Location(c).fromAddress(s, new Location.LocationFinder() {
             @Override
             public void onLocationFound(LatLng loc) {
                 start = loc;
@@ -55,7 +56,7 @@ public class MapWidget extends Widget {
     }
     public void setEnd(String s, Context c) {
         endStr = s;
-        toLatLng(s, c, new LocationFinder() {
+        new Location(c).fromAddress(s, new Location.LocationFinder() {
             @Override
             public void onLocationFound(LatLng loc) {
                 end = loc;

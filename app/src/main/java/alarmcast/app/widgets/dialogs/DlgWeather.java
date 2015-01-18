@@ -53,7 +53,7 @@ public class DlgWeather extends DialogFragment{
                 .setNeutralButton(getActivity().getString(R.string.dlg_use_current), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        //TODO: mCurWidget.location = new Location.getCurrent();
                     }
                 })
                 .setNegativeButton(getActivity().getString(R.string.dlg_cancel), null);

@@ -6,9 +6,6 @@ import android.support.v4.app.DialogFragment;
 
 import alarmcast.app.R;
 
-/**
- * Created by charles on 6/6/14.
- */
 public class CalendarWidget extends Widget {
     public final static String TITLE_CALENDAR = "Calendar";
     private final static int IMAGE_CALENDAR = R.drawable.calendar;
