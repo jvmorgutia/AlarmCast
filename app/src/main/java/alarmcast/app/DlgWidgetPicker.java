@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import alarmcast.app.widgets.CalendarWidget;
@@ -37,9 +38,11 @@ public class DlgWidgetPicker extends DialogFragment implements DialogInterface.O
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle(R.string.dlg_title_widgets)
-                .setItems(R.array.widgets, this);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.dlg_picker_main, null);
 
+        builder.setCustomTitle(view)
+               .setItems(R.array.widgets, this);
 
         Dialog d = builder.create();
         d.setCanceledOnTouchOutside(true);
